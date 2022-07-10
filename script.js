@@ -51,7 +51,6 @@ function game() {
         console.log('You and the computer TIED! Try again!');
       }
     }
-    computerPlay();
   }
 }
 
