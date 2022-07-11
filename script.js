@@ -10,8 +10,10 @@ const player = document.querySelector('#player');
 const computer = document.querySelector('#comp');
 const message = document.querySelector('#message');
 
-document.getElementById('player').innerHTML = `Player = ${playerScore}`;
-document.getElementById('comp').innerHTML = `Computer = ${computerScore}`;
+function updateScore() {
+  document.getElementById('player').innerHTML = `Player = ${playerScore}`;
+  document.getElementById('comp').innerHTML = `Computer = ${computerScore}`;
+}
 
 // function to choose Rock, Paper, or Scissors for computer
 function computerPlay() {
@@ -50,26 +52,31 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function wonGame() {
+  document.getElementById('message').innerHTML = `Congrats! You won the game!`;
+  rock.disabled = true;
+  paper.disabled = true;
+  scissors.disabled = true;
+}
+
+function lostGame() {
+  document.getElementById('message').innerHTML = `Oh no! You lost the game!`;
+  rock.disabled = true;
+  paper.disabled = true;
+  scissors.disabled = true;
+}
+
 // buttons that allow player to make a choice
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', () => {
   playerSelection = 'Rock';
   computerSelection = computerPlay();
   playRound(playerSelection, computerSelection);
-  document.getElementById('player').innerHTML = `Player = ${playerScore}`;
-  document.getElementById('comp').innerHTML = `Computer = ${computerScore}`;
+  updateScore();
   if (playerScore == 5) {
-    document.getElementById(
-      'message'
-    ).innerHTML = `Congrats! You won the game!`;
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
+    wonGame();
   } else if (computerScore == 5) {
-    document.getElementById('message').innerHTML = `Oh no! You lost the game!`;
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
+    lostGame();
   }
 });
 
@@ -78,20 +85,11 @@ paper.addEventListener('click', () => {
   playerSelection = 'Paper';
   computerSelection = computerPlay();
   playRound(playerSelection, computerSelection);
-  document.getElementById('player').innerHTML = `Player = ${playerScore}`;
-  document.getElementById('comp').innerHTML = `Computer = ${computerScore}`;
+  updateScore();
   if (playerScore == 5) {
-    document.getElementById(
-      'message'
-    ).innerHTML = `Congrats! You won the game!`;
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
+    wonGame();
   } else if (computerScore == 5) {
-    document.getElementById('message').innerHTML = `Oh no! You lost the game!`;
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
+    lostGame();
   }
 });
 
@@ -100,20 +98,11 @@ scissors.addEventListener('click', () => {
   playerSelection = 'Scissors';
   computerSelection = computerPlay();
   playRound(playerSelection, computerSelection);
-  document.getElementById('player').innerHTML = `Player = ${playerScore}`;
-  document.getElementById('comp').innerHTML = `Computer = ${computerScore}`;
+  updateScore();
   if (playerScore == 5) {
-    document.getElementById(
-      'message'
-    ).innerHTML = `Congrats! You won the game!`;
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
+    wonGame();
   } else if (computerScore == 5) {
-    document.getElementById('message').innerHTML = `Oh no! You lost the game!`;
-    rock.disabled = true;
-    paper.disabled = true;
-    scissors.disabled = true;
+    lostGame();
   }
 });
 
@@ -124,11 +113,13 @@ function resetGame() {
   rock.disabled = false;
   paper.disabled = false;
   scissors.disabled = false;
-  document.getElementById('player').innerHTML = `Player = ${playerScore}`;
-  document.getElementById('comp').innerHTML = `Computer = ${computerScore}`;
+  updateScore();
+  document.getElementById('message').innerHTML = ``;
 }
 
 const reset = document.querySelector('#reset');
 reset.addEventListener('click', () => {
   resetGame();
 });
+
+updateScore();
