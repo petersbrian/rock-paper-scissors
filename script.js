@@ -1,4 +1,4 @@
-let choice = ['Rock', 'Paper', 'Scissors'];
+const choice = ['Rock', 'Paper', 'Scissors'];
 let playerSelection = '';
 let computerSelection = computerPlay();
 
