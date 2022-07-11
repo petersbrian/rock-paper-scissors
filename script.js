@@ -4,6 +4,13 @@ let computerSelection = computerPlay();
 
 let playerScore = 0;
 let computerScore = 0;
+document.getElementById(
+  'score'
+).innerHTML = `${playerScore} - ${computerScore}`;
+
+document.getElementById(
+  'message'
+).innerHTML = `First to score 5 wins the game!`;
 
 // adds visual scoreboard
 const player = document.querySelector('#player');
@@ -11,10 +18,10 @@ const computer = document.querySelector('#comp');
 const message = document.querySelector('#message');
 
 function updateScore() {
-  document.getElementById('player').innerHTML = `Player = ${playerScore}`;
-  document.getElementById('comp').innerHTML = `Computer = ${computerScore}`;
+  document.getElementById(
+    'score'
+  ).innerHTML = `${playerScore} - ${computerScore}`;
 }
-
 // function to choose Rock, Paper, or Scissors for computer
 function computerPlay() {
   let number = Math.floor(Math.random() * choice.length);
@@ -57,6 +64,7 @@ function wonGame() {
   rock.disabled = true;
   paper.disabled = true;
   scissors.disabled = true;
+  reset.disabled = false;
 }
 
 function lostGame() {
@@ -64,6 +72,7 @@ function lostGame() {
   rock.disabled = true;
   paper.disabled = true;
   scissors.disabled = true;
+  reset.disabled = false;
 }
 
 // buttons that allow player to make a choice
@@ -114,7 +123,10 @@ function resetGame() {
   paper.disabled = false;
   scissors.disabled = false;
   updateScore();
-  document.getElementById('message').innerHTML = ``;
+  document.getElementById(
+    'message'
+  ).innerHTML = `First to score 5 wins the game!`;
+  reset.disabled = true;
 }
 
 const reset = document.querySelector('#reset');
@@ -123,3 +135,5 @@ reset.addEventListener('click', () => {
 });
 
 updateScore();
+
+reset.disabled = true;
